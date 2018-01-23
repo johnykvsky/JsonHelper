@@ -1,0 +1,49 @@
+{
+    "name": "johnykvsky/jsonhelper",
+    "type": "library",
+    "description": "JsonHelper for easier Json handling",
+    "keywords": [
+        "johnykvsky",
+        "JsonHelper"
+    ],
+    "homepage": "https://github.com/johnykvsky/JsonHelper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "johnykvsky",
+            "email": "johnykvsky@protonmail.com",
+            "homepage": "https://github.com/johnykvsky",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "^6.5",
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "johnykvsky\\Utils\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "johnykvsky\\Utils\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=phpcs.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1",
+        "fix-style": "phpcbf -p --standard=phpcs.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
