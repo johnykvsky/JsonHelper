@@ -52,7 +52,7 @@ class JsonHelper
      */
     public static function decode($json, $assoc = true)
     {
-        if (is_string($json)) {
+        if (!is_string($json)) {
             throw new \Exception(static::$messages[JSON_ERROR_STATE_MISMATCH]);
         }
 
