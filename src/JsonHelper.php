@@ -2,6 +2,8 @@
 
 namespace johnykvsky\Utils;
 
+use johnykvsky\Utils\Exception\JsonHelperException;
+
 class JsonHelper
 {
 
@@ -10,14 +12,14 @@ class JsonHelper
      *
      * @var array
      */
-    protected static $messages = array(
+    protected static $messages = [
         JSON_ERROR_NONE => 'No error has occurred',
         JSON_ERROR_DEPTH => 'The maximum stack depth has been exceeded',
         JSON_ERROR_STATE_MISMATCH => 'Invalid or malformed JSON',
         JSON_ERROR_CTRL_CHAR => 'Control character error, possibly incorrectly encoded',
         JSON_ERROR_SYNTAX => 'Syntax error',
         JSON_ERROR_UTF8 => 'Malformed UTF-8 characters, possibly incorrectly encoded'
-    );
+    ];
 
     /**
      * Encode data to json
@@ -25,20 +27,23 @@ class JsonHelper
      * @param mixed $value Data to be encoded
      * @param mixed $options Json constants
      *
-     * @return string|\Exception
-     * @throws \Exception
+     * @return string
      */
-    public static function encode($value, $options = 0)
+    public static function encode($value, $options = 0): string
     {
         $result = json_encode($value, $options);
-
+        
         $lastError = json_last_error();
 
-        if ($lastError === JSON_ERROR_NONE) {
-            return $result;
+        if ($lastError !== JSON_ERROR_NONE) {
+            throw new JsonHelperException(static::$messages[$lastError]);
         }
-
-        throw new \Exception(static::$messages[$lastError]);
+        
+        if ($result === false) {
+            throw new JsonHelperException('Json encode problem');
+        }
+        
+        return $result;
     }
 
     /**
@@ -50,10 +55,10 @@ class JsonHelper
      * @return mixed
      * @throws \Exception
      */
-    public static function decode($json, $assoc = true)
+    public static function decode(string $json, bool $assoc = true)
     {
         if (!is_string($json)) {
-            throw new \Exception(static::$messages[JSON_ERROR_STATE_MISMATCH]);
+            throw new JsonHelperException(static::$messages[JSON_ERROR_STATE_MISMATCH]);
         }
 
         $result = json_decode($json, $assoc);
@@ -64,15 +69,15 @@ class JsonHelper
             return $result;
         }
 
-        throw new \Exception(static::$messages[$lastError]);
+        throw new JsonHelperException(static::$messages[$lastError]);
     }
 
     /**
-     * @param string $strJson JSON to be validated
+     * @param mixed|string $strJson JSON to be validated
      *
      * @return bool
      */
-    public static function isValidJson($strJson)
+    public static function isValidJson($strJson): bool
     {
         if (!is_string($strJson)) {
             return false;
@@ -85,7 +90,7 @@ class JsonHelper
     /**
      * @param string|array $item Data to replace lines
      *
-     * @return bool
+     * @return string|array
      */
     public static function convertNewLinesToCRLF($item)
     {
@@ -113,8 +118,14 @@ class JsonHelper
      *
      * @return string
      */
-    public static function replaceNewLines($string)
+    public static function replaceNewLines(string $string): string
     {
-        return preg_replace('~\R~u', "\r\n", $string);
+        $replaced = preg_replace('~\R~u', "\r\n", $string);
+        
+        if ($replaced === null) {
+            return $string;
+        }
+        
+        return $replaced;
     }
 }
