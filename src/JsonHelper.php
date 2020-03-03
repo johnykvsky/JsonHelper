@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace johnykvsky\Utils;
 
 use johnykvsky\Utils\Exception\JsonHelperException;
@@ -10,7 +12,7 @@ class JsonHelper
     /**
      * Json encode/decode error messages
      *
-     * @var array
+     * @var array<string>
      */
     protected static $messages = [
         JSON_ERROR_NONE => 'No error has occurred',
