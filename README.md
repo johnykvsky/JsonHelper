@@ -2,9 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 JsonHelper - for easy JSON handling
@@ -65,14 +62,10 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/johnykvsky/JsonHelper.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/johnykvsky/JsonHelper/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/johnykvsky/JsonHelper.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/johnykvsky/JsonHelper.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/johnykvsky/JsonHelper.svg?style=flat-square
+[ico-github-actions]: https://github.com/johnykvsky/JsonHelper/actions/workflows/php.yml/badge.svg
 
 [link-packagist]: https://packagist.org/packages/johnykvsky/JsonHelper
-[link-travis]: https://travis-ci.org/johnykvsky/JsonHelper
-[link-scrutinizer]: https://scrutinizer-ci.com/g/johnykvsky/JsonHelper/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/johnykvsky/JsonHelper
 [link-downloads]: https://packagist.org/packages/johnykvsky/JsonHelper
 [link-author]: https://github.com/johnykvsky
+[link-github-actions]: https://github.com/johnykvsky/JsonHelper/actions
